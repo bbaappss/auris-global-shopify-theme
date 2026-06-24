@@ -103,12 +103,12 @@
         "heading": "Fieldside at Audi Field",
         "meta": "Washington Spirit · NWSL · September 26th",
         "image_asset": "spirit-loge-real.png",
-        "product": "fieldside-at-audi-field",
+        "product": "",
         "price_label": "Per Guest",
         "price": "$375",
         "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
-        "button_label": "Add to Cart",
-        "button_url": "https://splash.aurisglobal.co/spirit",
+        "button_label": "Register Interest",
+        "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Fieldside%20at%20Audi%20Field",
         "fine_print": "Limited availability · By reservation only"
       }
     },
