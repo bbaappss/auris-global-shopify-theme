@@ -9,9 +9,6 @@
           endif
           assign status = product.metafields.auris.status.value
           assign city = product.metafields.auris.city.value
-          assign subject = section.settings.email_subject | default: 'Interest' | append: ' — ' | append: product.title
-          assign subject_enc = subject | url_encode
-          assign mailto = 'mailto:' | append: section.settings.register_email | append: '?subject=' | append: subject_enc
         -%}
 
         <li class="auris-calendar__item">
@@ -29,7 +26,7 @@
           </div>
 
           <div class="auris-calendar__action">
-            <a href="{{ mailto }}" class="auris-btn">
+            <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn" target="_blank" rel="noopener">
               {{ section.settings.button_label | default: 'Register Interest' }}
             </a>
           </div>
@@ -61,16 +58,9 @@
       "default": "Register Interest"
     },
     {
-      "type": "text",
-      "id": "register_email",
-      "label": "Register interest email",
-      "default": "hello@aurisglobal.co"
-    },
-    {
-      "type": "text",
-      "id": "email_subject",
-      "label": "Email subject prefix",
-      "default": "Interest"
+      "type": "url",
+      "id": "button_url",
+      "label": "Register interest link"
     },
     {
       "type": "textarea",

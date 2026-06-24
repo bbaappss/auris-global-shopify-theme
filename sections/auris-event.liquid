@@ -64,7 +64,7 @@
             <span class="auris-event__price auris-event__price--soldout">Sold out</span>
           {% endif %}
         {% elsif section.settings.button_label != blank %}
-          <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn auris-btn--block">
+          <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn auris-btn--block" target="_blank" rel="noopener">
             {{ section.settings.button_label }}
           </a>
         {% endif %}

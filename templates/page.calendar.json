@@ -28,8 +28,7 @@
           "formula-1"
         ],
         "button_label": "Register Interest",
-        "register_email": "hello@aurisglobal.co",
-        "email_subject": "Interest",
+        "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
         "footnote": "Dates and venues confirmed closer to each gathering. Society members are notified first."
       }
     }
