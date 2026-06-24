@@ -22,74 +22,6 @@
         "button_url": ""
       }
     },
-    "auris_event_mdJwcE": {
-      "type": "auris-event",
-      "blocks": {
-        "detail_46yYnc": {
-          "type": "detail",
-          "settings": {
-            "label": "Setting",
-            "value": "Fieldside loge at Audi Field — field-level seating along the touchline, the vantage most venues hold back."
-          }
-        },
-        "detail_BYemrU": {
-          "type": "detail",
-          "settings": {
-            "label": "Match",
-            "value": "Washington Spirit vs. Angel City FC · NWSL · September 26th. Discussion & Networking: 5:30pm. Kick Off: 6:30pm."
-          }
-        },
-        "detail_8xigTV": {
-          "type": "detail",
-          "settings": {
-            "label": "Arrival",
-            "value": "Dedicated entry and an unhurried pre-match reception — drinks and conversation in the VIP lounge before the first whistle."
-          }
-        },
-        "detail_z6cqzh": {
-          "type": "detail",
-          "settings": {
-            "label": "At the Table",
-            "value": "Full in-seat food and beverage throughout — a considered menu and premium pours. Nothing to queue for, nothing to ask twice."
-          }
-        },
-        "detail_R6GTDj": {
-          "type": "detail",
-          "settings": {
-            "label": "Beyond the Match",
-            "value": "The day doesn't end at the final whistle. Excellent viewing for pre-match warmups and post-match celebrating with the team."
-          }
-        },
-        "detail_tyk8Jn": {
-          "type": "detail",
-          "settings": {
-            "label": "Capacity",
-            "value": "Limited to twelve guests. The intimacy is deliberate, not a constraint."
-          }
-        }
-      },
-      "block_order": [
-        "detail_46yYnc",
-        "detail_BYemrU",
-        "detail_8xigTV",
-        "detail_z6cqzh",
-        "detail_R6GTDj",
-        "detail_tyk8Jn"
-      ],
-      "settings": {
-        "eyebrow": "Inaugural Gathering",
-        "heading": "Fieldside at Audi Field",
-        "meta": "Washington Spirit · NWSL · September 26th",
-        "image_asset": "spirit-loge-real.png",
-        "product": "",
-        "price_label": "Per Guest",
-        "price": "$375",
-        "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
-        "button_label": "Register Interest",
-        "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Fieldside%20at%20Audi%20Field",
-        "fine_print": "Limited availability · By reservation only"
-      }
-    },
     "thesis": {
       "type": "auris-statement",
       "blocks": {
@@ -108,11 +40,79 @@
         "background": "ivory",
         "caption": "Auris · Latin for Ear"
       }
+    },
+    "auris_event_9zdwWM": {
+      "type": "auris-event",
+      "blocks": {
+        "detail_B7DphW": {
+          "type": "detail",
+          "settings": {
+            "label": "Setting",
+            "value": "Fieldside loge at Audi Field — field-level seating along the touchline, the vantage most venues hold back."
+          }
+        },
+        "detail_87LrBt": {
+          "type": "detail",
+          "settings": {
+            "label": "Match",
+            "value": "Washington Spirit vs. Angel City FC · NWSL · September 26th. Discussion & Networking: 5:30pm. Kick Off: 6:30pm."
+          }
+        },
+        "detail_Nhqbrx": {
+          "type": "detail",
+          "settings": {
+            "label": "Arrival",
+            "value": "Dedicated entry and an unhurried pre-match reception — drinks and conversation in the VIP lounge before the first whistle."
+          }
+        },
+        "detail_rGFFzk": {
+          "type": "detail",
+          "settings": {
+            "label": "At the Table",
+            "value": "Full in-seat food and beverage throughout — a considered menu and premium pours. Nothing to queue for, nothing to ask twice."
+          }
+        },
+        "detail_kR3zMG": {
+          "type": "detail",
+          "settings": {
+            "label": "Beyond the Match",
+            "value": "The day doesn't end at the final whistle. Excellent viewing for pre-match warmups and post-match celebrating with the team."
+          }
+        },
+        "detail_NqJWCT": {
+          "type": "detail",
+          "settings": {
+            "label": "Capacity",
+            "value": "Limited to twelve guests. The intimacy is deliberate, not a constraint."
+          }
+        }
+      },
+      "block_order": [
+        "detail_B7DphW",
+        "detail_87LrBt",
+        "detail_Nhqbrx",
+        "detail_rGFFzk",
+        "detail_kR3zMG",
+        "detail_NqJWCT"
+      ],
+      "settings": {
+        "eyebrow": "Inaugural Gathering",
+        "heading": "Fieldside at Audi Field",
+        "meta": "Washington Spirit · NWSL · September 26th",
+        "image_asset": "spirit-loge-real.png",
+        "product": "",
+        "price_label": "Per Guest",
+        "price": "$375",
+        "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
+        "button_label": "Register Interest",
+        "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
+        "fine_print": "Limited availability · By reservation only"
+      }
     }
   },
   "order": [
     "hero",
     "thesis",
-    "auris_event_mdJwcE"
+    "auris_event_9zdwWM"
   ]
 }
