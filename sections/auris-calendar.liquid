@@ -1,46 +1,69 @@
+{%- liquid
+  # Build a sortable index: "YYYY-MM-DD__originalIndex" so we can render
+  # events soonest-first. Undated events sort to the end (9999-12-31).
+  assign products = section.settings.products
+  assign sortable = ''
+  for product in products
+    assign event_date = product.metafields.auris.event_date.value
+    if event_date != blank
+      assign sort_key = event_date | date: '%Y-%m-%d'
+    else
+      assign sort_key = '9999-12-31'
+    endif
+    assign sortable = sortable | append: sort_key | append: '__' | append: forloop.index0 | append: '|'
+  endfor
+  assign ordered = sortable | split: '|' | sort
+-%}
 <section class="auris-section full-width auris-bg-ivory">
   <div class="auris-container">
     <ul class="auris-calendar__list">
-      {% for block in section.blocks %}
-        <li class="auris-calendar__item" {{ block.shopify_attributes }}>
+      {%- for row in ordered -%}
+        {%- assign idx = row | split: '__' | last | plus: 0 -%}
+        {%- assign product = products[idx] -%}
+        {%- if product == blank -%}{%- continue -%}{%- endif -%}
+
+        {%- liquid
+          assign year = product.metafields.auris.year.value
+          if year == blank and product.metafields.auris.event_date.value != blank
+            assign year = product.metafields.auris.event_date.value | date: '%Y'
+          endif
+          assign status = product.metafields.auris.status.value
+          assign city = product.metafields.auris.city.value
+          assign variant = product.selected_or_first_available_variant
+        -%}
+
+        <li class="auris-calendar__item">
           <div>
-            <div class="auris-calendar__year">{{ block.settings.year }}</div>
-            {% if block.settings.status != blank %}
-              <div class="auris-calendar__status">{{ block.settings.status }}</div>
+            {% if year != blank %}<div class="auris-calendar__year">{{ year }}</div>{% endif %}
+            {% if status != blank %}<div class="auris-calendar__status">{{ status }}</div>{% endif %}
+          </div>
+
+          <div>
+            <h2 class="auris-calendar__name">{{ product.title }}</h2>
+            {% if city != blank %}<div class="auris-calendar__city">{{ city }}</div>{% endif %}
+            {% if product.description != blank %}
+              <div class="auris-calendar__blurb">{{ product.description }}</div>
             {% endif %}
           </div>
-          <div>
-            <h2 class="auris-calendar__name">{{ block.settings.title }}</h2>
-            {% if block.settings.city != blank %}
-              <div class="auris-calendar__city">{{ block.settings.city }}</div>
-            {% endif %}
-            {% if block.settings.blurb != blank %}
-              <p class="auris-calendar__blurb">{{ block.settings.blurb }}</p>
-            {% endif %}
-          </div>
-          {%- liquid
-            assign product = block.settings.product
-            assign btn_url = block.settings.button_url | default: '#'
-            assign btn_label = block.settings.button_label
-            if product != blank
-              assign btn_url = product.url
-              if btn_label == blank
-                assign btn_label = 'Reserve'
-              endif
-            endif
-          -%}
+
           <div class="auris-calendar__action">
-            {% if product != blank and product.available %}
+            {% if product.price > 0 %}
               <div class="auris-calendar__price">{{ product.price | money }}</div>
-            {% elsif product != blank %}
-              <div class="auris-calendar__price auris-calendar__price--soldout">Sold out</div>
             {% endif %}
-            {% if btn_label != blank %}
-              <a href="{{ btn_url }}" class="auris-btn">{{ btn_label }}</a>
+
+            {% if product.available and variant %}
+              {% form 'product', product %}
+                <input type="hidden" name="id" value="{{ variant.id }}">
+                <button type="submit" class="auris-btn">
+                  {{ section.settings.button_label | default: 'Add to Cart' }}
+                </button>
+              {% endform %}
+            {% else %}
+              <span class="auris-calendar__price auris-calendar__price--soldout">Sold out</span>
             {% endif %}
           </div>
         </li>
-      {% endfor %}
+      {%- endfor -%}
     </ul>
 
     {% if section.settings.footnote != blank %}
@@ -54,77 +77,28 @@
   "name": "Auris calendar",
   "settings": [
     {
+      "type": "product_list",
+      "id": "products",
+      "label": "Events",
+      "info": "Each product's auris.* metafields supply the year, date, city, etc. Sorted by event date automatically.",
+      "limit": 50
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to Cart"
+    },
+    {
       "type": "textarea",
       "id": "footnote",
       "label": "Footnote",
       "default": "Dates and venues confirmed closer to each gathering. Society members are notified first."
     }
   ],
-  "blocks": [
-    {
-      "type": "event",
-      "name": "Event",
-      "settings": [
-        {
-          "type": "text",
-          "id": "year",
-          "label": "Year",
-          "default": "2026"
-        },
-        {
-          "type": "text",
-          "id": "status",
-          "label": "Date / status",
-          "default": "Aug 30 – Sep 13"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "US Open"
-        },
-        {
-          "type": "text",
-          "id": "city",
-          "label": "City",
-          "default": "New York City"
-        },
-        {
-          "type": "textarea",
-          "id": "blurb",
-          "label": "Description",
-          "default": "A late-summer evening at Flushing Meadows — premium courtside hospitality around the season's defining tennis fortnight."
-        },
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Linked product",
-          "info": "Optional. When set, the button links to this product and shows its live price."
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button label",
-          "default": "Register Interest"
-        },
-        {
-          "type": "url",
-          "id": "button_url",
-          "label": "Button link",
-          "info": "Used only when no product is linked."
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Auris calendar",
-      "blocks": [
-        { "type": "event" },
-        { "type": "event" },
-        { "type": "event" },
-        { "type": "event" }
-      ]
+      "name": "Auris calendar"
     }
   ]
 }

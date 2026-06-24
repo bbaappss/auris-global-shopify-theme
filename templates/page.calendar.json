@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "header": {
@@ -20,58 +11,14 @@
     },
     "events": {
       "type": "auris-calendar",
-      "blocks": {
-        "e1": {
-          "type": "event",
-          "settings": {
-            "year": "2026",
-            "status": "Aug 30 – Sep 13",
-            "title": "US Open",
-            "city": "New York City",
-            "blurb": "A late-summer evening at Flushing Meadows — premium courtside hospitality around the season's defining tennis fortnight.",
-            "button_label": "Register Interest",
-            "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Auris%20Calendar"
-          }
-        },
-        "e2": {
-          "type": "event",
-          "settings": {
-            "year": "2026",
-            "status": "Nov 21",
-            "title": "NWSL Championship",
-            "city": "Washington, DC",
-            "blurb": "The final match of the NWSL season — a gathering for the people who were paying attention before the rest of the room arrived.",
-            "button_label": "Register Interest",
-            "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Auris%20Calendar"
-          }
-        },
-        "e3": {
-          "type": "event",
-          "settings": {
-            "year": "2027",
-            "status": "July",
-            "title": "Mubadala Open",
-            "city": "Washington, DC",
-            "blurb": "Hometown tennis at the Mubadala Citi DC Open — an intimate week of marquee matches and after-hours conversation.",
-            "button_label": "Register Interest",
-            "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Auris%20Calendar"
-          }
-        },
-        "e4": {
-          "type": "event",
-          "settings": {
-            "year": "2027",
-            "status": "TBC",
-            "title": "Formula 1",
-            "city": "Venue TBC",
-            "blurb": "A Grand Prix weekend, built the Auris way — paddock-adjacent access, considered hospitality, the right twelve people in the room.",
-            "button_label": "Register Interest",
-            "button_url": "mailto:hello@aurisglobal.co?subject=Interest%20%E2%80%94%20Auris%20Calendar"
-          }
-        }
-      },
-      "block_order": ["e1", "e2", "e3", "e4"],
       "settings": {
+        "products": [
+          "us-open",
+          "nwsl-championship",
+          "mubadala-open",
+          "formula-1"
+        ],
+        "button_label": "Add to Cart",
         "footnote": "Dates and venues confirmed closer to each gathering. Society members are notified first."
       }
     }
