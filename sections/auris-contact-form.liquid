@@ -1,0 +1,150 @@
+<section class="auris-section full-width auris-bg-navy">
+  <div class="auris-container">
+    <div class="auris-contact-form__intro">
+      {% if section.settings.eyebrow != blank %}
+        <div class="auris-eyebrow">{{ section.settings.eyebrow }}</div>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h1 class="auris-contact-form__title">{{ section.settings.heading }}</h1>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <p class="auris-contact-form__body">{{ section.settings.body }}</p>
+      {% endif %}
+    </div>
+
+    {% form 'contact', class: 'auris-form' %}
+      {% if form.posted_successfully? %}
+        <p class="auris-form__note auris-form__note--success">
+          {{ section.settings.success_message | default: 'Thank you — your message has reached us. We will be in touch.' }}
+        </p>
+      {% elsif form.errors %}
+        <div class="auris-form__note auris-form__note--error">
+          {{ section.settings.error_message | default: 'Please review the details below.' }}
+          <ul>
+            {% for field in form.errors %}
+              <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="auris-field auris-field--row">
+        <div>
+          <label for="auris-contact-name">{{ section.settings.label_name | default: 'Name' }}</label>
+          <input
+            type="text"
+            id="auris-contact-name"
+            name="contact[name]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            placeholder="{{ section.settings.placeholder_name | default: 'Your name' }}"
+          >
+        </div>
+        <div>
+          <label for="auris-contact-email">{{ section.settings.label_email | default: 'Email' }}</label>
+          <input
+            type="email"
+            id="auris-contact-email"
+            name="contact[email]"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            placeholder="{{ section.settings.placeholder_email | default: 'you@example.com' }}"
+            autocorrect="off"
+            autocapitalize="off"
+            required
+          >
+        </div>
+      </div>
+
+      {% if section.settings.show_phone %}
+        <div class="auris-field">
+          <label for="auris-contact-phone">{{ section.settings.label_phone | default: 'Phone' }}</label>
+          <input
+            type="tel"
+            id="auris-contact-phone"
+            name="contact[phone]"
+            value="{% if form.phone %}{{ form.phone }}{% endif %}"
+            placeholder="{{ section.settings.placeholder_phone | default: 'Optional' }}"
+          >
+        </div>
+      {% endif %}
+
+      <div class="auris-field">
+        <label for="auris-contact-body">{{ section.settings.label_message | default: 'Message' }}</label>
+        <textarea
+          id="auris-contact-body"
+          name="contact[body]"
+          placeholder="{{ section.settings.placeholder_message | default: 'How can we help?' }}"
+          required
+        >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+      </div>
+
+      <div class="auris-form__actions">
+        <button type="submit" class="auris-btn">
+          {{ section.settings.button_label | default: 'Send Message' }}
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris contact form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Direct Line"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "For partnership, press, and private inquiry."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Tell us what you have in mind. Every message reaches us directly."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone field",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Send Message"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you — your message has reached us. We will be in touch."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error heading",
+      "default": "Please review the details below."
+    },
+    {
+      "type": "header",
+      "content": "Field labels"
+    },
+    { "type": "text", "id": "label_name", "label": "Name label", "default": "Name" },
+    { "type": "text", "id": "label_email", "label": "Email label", "default": "Email" },
+    { "type": "text", "id": "label_phone", "label": "Phone label", "default": "Phone" },
+    { "type": "text", "id": "label_message", "label": "Message label", "default": "Message" }
+  ],
+  "presets": [
+    {
+      "name": "Auris contact form"
+    }
+  ]
+}
+{% endschema %}

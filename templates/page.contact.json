@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "header": {
+      "type": "auris-page-header",
+      "settings": {
+        "background": "navy",
+        "eyebrow": "Contact",
+        "heading": "Write to us.",
+        "tagline": "Listening is the edge."
+      }
+    },
+    "form": {
+      "type": "auris-contact-form",
+      "settings": {
+        "eyebrow": "Direct Line",
+        "heading": "For partnership, press, and private inquiry.",
+        "body": "Tell us what you have in mind. Every message reaches us directly.",
+        "show_phone": true,
+        "button_label": "Send Message",
+        "success_message": "Thank you — your message has reached us. We will be in touch."
+      }
+    }
+  },
+  "order": ["header", "form"]
+}

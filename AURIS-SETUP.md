@@ -25,6 +25,7 @@ templates** — you create a Page in admin and assign the matching template.
 | `auris-event` | Event detail rows + price/reservation panel (Society) |
 | `auris-features` | Three numbered columns ("What to Expect") |
 | `auris-contact` | Bordered contact card with email |
+| `auris-contact-form` | Styled contact form (Shopify `{% form 'contact' %}`) |
 | `auris-calendar` | Repeatable list of upcoming gatherings |
 
 ## Pages to create in admin
@@ -37,8 +38,13 @@ Go to **Online Store → Pages → Add page**, set the title, then under
 | Society  | `page.society`  | `society`  |
 | Calendar | `page.calendar` | `calendar` |
 | About    | `page.about`    | `about`    |
+| Contact  | `page.contact`  | `contact`  |
 | Privacy  | `page.privacy`  | `privacy`  |
 | Terms    | `page.terms`    | `terms`    |
+
+The **Contact** page uses Shopify's native contact form — submissions are
+emailed to the **Store contact email** set in **Settings → General → Store
+contact** (and to the **Sender email** if configured).
 
 (The Home page already uses `templates/index.json` automatically.)
 
