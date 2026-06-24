@@ -9,7 +9,9 @@
           endif
           assign status = product.metafields.auris.status.value
           assign city = product.metafields.auris.city.value
-          assign variant = product.selected_or_first_available_variant
+          assign subject = section.settings.email_subject | default: 'Interest' | append: ' — ' | append: product.title
+          assign subject_enc = subject | url_encode
+          assign mailto = 'mailto:' | append: section.settings.register_email | append: '?subject=' | append: subject_enc
         -%}
 
         <li class="auris-calendar__item">
@@ -27,20 +29,9 @@
           </div>
 
           <div class="auris-calendar__action">
-            {% if product.price > 0 %}
-              <div class="auris-calendar__price">{{ product.price | money }}</div>
-            {% endif %}
-
-            {% if product.available and variant %}
-              {% form 'product', product %}
-                <input type="hidden" name="id" value="{{ variant.id }}">
-                <button type="submit" class="auris-btn">
-                  {{ section.settings.button_label | default: 'Add to Cart' }}
-                </button>
-              {% endform %}
-            {% else %}
-              <span class="auris-calendar__price auris-calendar__price--soldout">Sold out</span>
-            {% endif %}
+            <a href="{{ mailto }}" class="auris-btn">
+              {{ section.settings.button_label | default: 'Register Interest' }}
+            </a>
           </div>
         </li>
       {%- endfor -%}
@@ -67,7 +58,19 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Add to Cart"
+      "default": "Register Interest"
+    },
+    {
+      "type": "text",
+      "id": "register_email",
+      "label": "Register interest email",
+      "default": "hello@aurisglobal.co"
+    },
+    {
+      "type": "text",
+      "id": "email_subject",
+      "label": "Email subject prefix",
+      "default": "Interest"
     },
     {
       "type": "textarea",

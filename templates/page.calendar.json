@@ -27,7 +27,9 @@
           "mubadala-open",
           "formula-1"
         ],
-        "button_label": "Add to Cart",
+        "button_label": "Register Interest",
+        "register_email": "hello@aurisglobal.co",
+        "email_subject": "Interest",
         "footnote": "Dates and venues confirmed closer to each gathering. Society members are notified first."
       }
     }
