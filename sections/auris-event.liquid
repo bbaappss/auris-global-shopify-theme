@@ -42,13 +42,28 @@
         {% if section.settings.price_label != blank %}
           <div class="auris-event__price-label">{{ section.settings.price_label }}</div>
         {% endif %}
-        {% if section.settings.price != blank %}
+        {%- assign event_product = section.settings.product -%}
+        {% if event_product != blank and event_product.price > 0 %}
+          <div class="auris-event__price">{{ event_product.price | money }}</div>
+        {% elsif section.settings.price != blank %}
           <div class="auris-event__price">{{ section.settings.price }}</div>
         {% endif %}
         {% if section.settings.price_note != blank %}
           <p class="auris-event__note">{{ section.settings.price_note }}</p>
         {% endif %}
-        {% if section.settings.button_label != blank %}
+        {% if event_product != blank %}
+          {%- assign event_variant = event_product.selected_or_first_available_variant -%}
+          {% if event_product.available and event_variant %}
+            {% form 'product', event_product %}
+              <input type="hidden" name="id" value="{{ event_variant.id }}">
+              <button type="submit" class="auris-btn auris-btn--block">
+                {{ section.settings.button_label | default: 'Add to Cart' }}
+              </button>
+            {% endform %}
+          {% else %}
+            <span class="auris-event__price auris-event__price--soldout">Sold out</span>
+          {% endif %}
+        {% elsif section.settings.button_label != blank %}
           <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn auris-btn--block">
             {{ section.settings.button_label }}
           </a>
@@ -97,6 +112,12 @@
     {
       "type": "header",
       "content": "Reservation panel"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Linked product",
+      "info": "When set, the price comes from this product and the button becomes Add to Cart."
     },
     {
       "type": "text",

@@ -1,27 +1,7 @@
-{%- liquid
-  # Build a sortable index: "YYYY-MM-DD__originalIndex" so we can render
-  # events soonest-first. Undated events sort to the end (9999-12-31).
-  assign products = section.settings.products
-  assign sortable = ''
-  for product in products
-    assign event_date = product.metafields.auris.event_date.value
-    if event_date != blank
-      assign sort_key = event_date | date: '%Y-%m-%d'
-    else
-      assign sort_key = '9999-12-31'
-    endif
-    assign sortable = sortable | append: sort_key | append: '__' | append: forloop.index0 | append: '|'
-  endfor
-  assign ordered = sortable | split: '|' | sort
--%}
 <section class="auris-section full-width auris-bg-ivory">
   <div class="auris-container">
     <ul class="auris-calendar__list">
-      {%- for row in ordered -%}
-        {%- assign idx = row | split: '__' | last | plus: 0 -%}
-        {%- assign product = products[idx] -%}
-        {%- if product == blank -%}{%- continue -%}{%- endif -%}
-
+      {%- for product in section.settings.products -%}
         {%- liquid
           assign year = product.metafields.auris.year.value
           if year == blank and product.metafields.auris.event_date.value != blank
@@ -80,7 +60,7 @@
       "type": "product_list",
       "id": "products",
       "label": "Events",
-      "info": "Each product's auris.* metafields supply the year, date, city, etc. Sorted by event date automatically.",
+      "info": "Each product's auris.* metafields supply the year, date, city, etc. Order the events here soonest-first.",
       "limit": 50
     },
     {

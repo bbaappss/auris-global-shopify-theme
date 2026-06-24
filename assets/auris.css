@@ -497,6 +497,13 @@ body {
   letter-spacing: 0.03em;
 }
 .auris-event__aside .auris-btn { margin-top: 2.5rem; }
+.auris-event__aside form { margin: 2.5rem 0 0; }
+.auris-event__aside form .auris-btn { margin-top: 0; }
+.auris-event__price--soldout {
+  color: var(--oxblood);
+  font-style: italic;
+  font-size: 1.5rem;
+}
 
 /* ---- Feature columns ---- */
 .auris-features__grid {
