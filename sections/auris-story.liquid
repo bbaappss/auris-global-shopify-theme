@@ -1,0 +1,82 @@
+{%- liquid
+  assign bg = 'var(--ivory)'
+  if section.settings.background == 'stone'
+    assign bg = 'var(--stone)'
+  endif
+-%}
+<section class="auris-section full-width" style="background-color: {{ bg }};">
+  <div class="auris-container">
+    <div class="auris-prose">
+      {% if section.settings.intro != blank %}
+        {{ section.settings.intro }}
+      {% endif %}
+
+      {% assign people = section.blocks | where: 'type', 'person' %}
+      {% if people.size > 0 %}
+        <div class="auris-story__people">
+          {% for block in people %}
+            <div class="auris-story__person" {{ block.shopify_attributes }}>
+              <p class="auris-name">{{ block.settings.name }}</p>
+              {% if block.settings.bio != blank %}
+                <p>{{ block.settings.bio }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris story",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "ivory", "label": "Ivory" },
+        { "value": "stone", "label": "Stone" }
+      ],
+      "default": "ivory"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Auris is a premium sports holding company. We invest in undervalued opportunities, convene a community around the live moments that matter, and are building a flagship destination where the work and the conversation continue after the final whistle.</p><p>We move quietly, with patience, and on our own terms. We believe the best returns — financial, cultural, personal — come to those who pay attention before the rest of the room arrives.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "person",
+      "name": "Person",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Chenae White Edwards"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "Bio",
+          "default": "Leads the investment side, bringing institutional finance discipline and SEC-credentialed rigor to how Auris evaluates and acquires undervalued assets. Where Auris listens for the value others miss, she builds the structure to act on it."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris story",
+      "blocks": [
+        { "type": "person" },
+        { "type": "person" }
+      ]
+    }
+  ]
+}
+{% endschema %}

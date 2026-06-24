@@ -19,11 +19,27 @@
       }
     },
     "story": {
-      "type": "auris-prose",
+      "type": "auris-story",
+      "blocks": {
+        "p1": {
+          "type": "person",
+          "settings": {
+            "name": "Chenae White Edwards",
+            "bio": "Leads the investment side, bringing institutional finance discipline and SEC-credentialed rigor to how Auris evaluates and acquires undervalued assets. Where Auris listens for the value others miss, she builds the structure to act on it."
+          }
+        },
+        "p2": {
+          "type": "person",
+          "settings": {
+            "name": "Shar Caesar Douglas",
+            "bio": "A senior marketing and growth executive who builds the systems that turn brand storytelling into measurable demand. Her work lives where culture meets performance — the narrative that earns attention, and the engine that converts it."
+          }
+        }
+      },
+      "block_order": ["p1", "p2"],
       "settings": {
         "background": "ivory",
-        "use_page_content": false,
-        "content": "<p>Auris is a premium sports holding company. We invest in undervalued opportunities, convene a community around the live moments that matter, and are building a flagship destination where the work and the conversation continue after the final whistle.</p><p>We move quietly, with patience, and on our own terms. We believe the best returns — financial, cultural, personal — come to those who pay attention before the rest of the room arrives.</p><p><em>Chenae White Edwards</em></p><p>Leads the investment side, bringing institutional finance discipline and SEC-credentialed rigor to how Auris evaluates and acquires undervalued assets. Where Auris listens for the value others miss, she builds the structure to act on it.</p><p><em>Shar Caesar Douglas</em></p><p>A senior marketing and growth executive who builds the systems that turn brand storytelling into measurable demand. Her work lives where culture meets performance — the narrative that earns attention, and the engine that converts it.</p>"
+        "intro": "<p>Auris is a premium sports holding company. We invest in undervalued opportunities, convene a community around the live moments that matter, and are building a flagship destination where the work and the conversation continue after the final whistle.</p><p>We move quietly, with patience, and on our own terms. We believe the best returns — financial, cultural, personal — come to those who pay attention before the rest of the room arrives.</p>"
       }
     },
     "contact": {

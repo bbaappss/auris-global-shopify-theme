@@ -384,6 +384,15 @@ body {
   font-style: italic;
   color: var(--carbon);
 }
+.auris-story__people {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.auris-story__person > * + * {
+  margin-top: 0.5rem;
+}
 
 /* ---- Event module ---- */
 .auris-event__title {
