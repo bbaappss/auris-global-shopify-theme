@@ -26,7 +26,8 @@
             <li class="auris-cart__item">
               <a href="{{ item.url }}" class="auris-cart__thumb">
                 {% if item.image %}
-                  {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.product.title | escape, widths: '120, 200, 300' }}
+                  {%- assign item_alt = item.product.title | escape -%}
+                  {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item_alt, widths: '120, 200, 300' }}
                 {% endif %}
               </a>
 
