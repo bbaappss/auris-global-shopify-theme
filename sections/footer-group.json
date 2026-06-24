@@ -11,15 +11,29 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
+    "email_capture": {
+      "type": "auris-email-capture",
+      "settings": {
+        "heading": "This is the first of many.",
+        "body": "Auris Society is building a calendar of premium gatherings across sport, culture, and the spaces between. More to come.",
+        "placeholder": "Your email",
+        "button_label": "Join the List",
+        "success_message": "Thank you — you are on the list."
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {
+        "brand_name": "Auris",
+        "brand_text": "A premium sports holding company. Hospitality, investment, access.",
         "menu": "",
-        "show_payment_icons": true
+        "legal_name": "Auris Global, LLC",
+        "rights_text": "All rights reserved"
       }
     }
   },
   "order": [
+    "email_capture",
     "footer"
   ]
 }

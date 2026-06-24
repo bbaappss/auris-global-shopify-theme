@@ -1,0 +1,80 @@
+{%- liquid
+  assign bg = 'var(--ivory)'
+  if section.settings.background == 'stone'
+    assign bg = 'var(--stone)'
+  elsif section.settings.background == 'navy'
+    assign bg = 'var(--navy)'
+  endif
+-%}
+<section class="auris-section full-width" style="background-color: {{ bg }};">
+  <div class="auris-container auris-narrow auris-statement">
+    {% for block in section.blocks %}
+      {% if block.type == 'paragraph' %}
+        <p {{ block.shopify_attributes }} {% if block.settings.color == 'oxblood' %}style="color: var(--oxblood);"{% endif %}>
+          {{ block.settings.text }}
+        </p>
+      {% endif %}
+    {% endfor %}
+
+    {% if section.settings.caption != blank %}
+      <div class="auris-rule">
+        <span class="auris-hairline" style="width: 2.5rem;"></span>
+        <span class="auris-eyebrow">{{ section.settings.caption }}</span>
+        <span class="auris-hairline" style="width: 2.5rem;"></span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris statement",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "ivory", "label": "Ivory" },
+        { "value": "stone", "label": "Stone" },
+        { "value": "navy", "label": "Navy" }
+      ],
+      "default": "ivory"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption (optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Color",
+          "options": [
+            { "value": "carbon", "label": "Carbon" },
+            { "value": "oxblood", "label": "Oxblood" }
+          ],
+          "default": "carbon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris statement",
+      "blocks": [{ "type": "paragraph" }]
+    }
+  ]
+}
+{% endschema %}

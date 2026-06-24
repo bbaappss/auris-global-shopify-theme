@@ -1,0 +1,50 @@
+{%- liquid
+  assign bg = 'var(--ivory)'
+  if section.settings.background == 'stone'
+    assign bg = 'var(--stone)'
+  endif
+-%}
+<section class="auris-section full-width" style="background-color: {{ bg }};">
+  <div class="auris-container">
+    {% if section.settings.use_page_content and page.content != blank %}
+      <div class="auris-prose">{{ page.content }}</div>
+    {% else %}
+      <div class="auris-prose">{{ section.settings.content }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris prose",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "ivory", "label": "Ivory" },
+        { "value": "stone", "label": "Stone" }
+      ],
+      "default": "ivory"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_page_content",
+      "label": "Use the page's body content instead of the text below",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Auris is a premium sports holding company. We invest in undervalued opportunities, convene a community around the live moments that matter, and are building a flagship destination where the work and the conversation continue after the final whistle.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris prose"
+    }
+  ]
+}
+{% endschema %}

@@ -9,12 +9,32 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero": {
+      "type": "auris-hero",
+      "settings": {
+        "eyebrow": "Est. MMXXVI",
+        "heading": "Auris",
+        "heading_size": "display",
+        "tagline": "Listening is the edge."
+      }
+    },
+    "thesis": {
+      "type": "auris-statement",
+      "blocks": {
+        "p1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "The greatest satisfactions in sport are not speed or size. They are electric — the room, the access, the connections of the live moment, then carried into the markets others overlook.",
+            "color": "carbon"
+          }
+        }
+      },
+      "block_order": ["p1"],
+      "settings": {
+        "background": "ivory",
+        "caption": "Auris · Latin for Ear"
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["hero", "thesis"]
 }

@@ -1,0 +1,141 @@
+{
+  "sections": {
+    "hero": {
+      "type": "auris-hero",
+      "settings": {
+        "image_asset": "spirit-stadium.jpg",
+        "eyebrow": "Auris Society",
+        "heading": "A society of people who notice what others miss.",
+        "heading_size": "sub",
+        "lede": "Auris Society convenes a community around the live moments that matter — curated access, premium hospitality, and the conversations that happen when the right people are in the room.",
+        "button_label": "View Upcoming Gatherings",
+        "button_url": "#experience"
+      }
+    },
+    "why": {
+      "type": "auris-statement",
+      "blocks": {
+        "p1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "The best moments in sport are not the ones everyone sees. They are the ones you feel — the shift in energy before a goal, the conversation at halftime that changes a deal, the quiet confidence of being exactly where you are supposed to be.",
+            "color": "carbon"
+          }
+        },
+        "p2": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Auris Society exists for that feeling. We build premium, intimate gatherings around live sport — not as spectators, but as participants in something considered, curated, and rare.",
+            "color": "carbon"
+          }
+        },
+        "p3": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Hospitality with a point of view.",
+            "color": "oxblood"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "background": "stone"
+      }
+    },
+    "experience": {
+      "type": "auris-event",
+      "blocks": {
+        "d1": {
+          "type": "detail",
+          "settings": {
+            "label": "Setting",
+            "value": "Fieldside loge at Audi Field — field-level seating along the touchline, the vantage most venues hold back."
+          }
+        },
+        "d2": {
+          "type": "detail",
+          "settings": {
+            "label": "Match",
+            "value": "Washington Spirit vs. Angel City FC · NWSL · September 26th. Discussion & Networking: 5:30pm. Kick Off: 6:30pm."
+          }
+        },
+        "d3": {
+          "type": "detail",
+          "settings": {
+            "label": "Arrival",
+            "value": "Dedicated entry and an unhurried pre-match reception — drinks and conversation in the VIP lounge before the first whistle."
+          }
+        },
+        "d4": {
+          "type": "detail",
+          "settings": {
+            "label": "At the Table",
+            "value": "Full in-seat food and beverage throughout — a considered menu and premium pours. Nothing to queue for, nothing to ask twice."
+          }
+        },
+        "d5": {
+          "type": "detail",
+          "settings": {
+            "label": "Beyond the Match",
+            "value": "The day doesn't end at the final whistle. Excellent viewing for pre-match warmups and post-match celebrating with the team."
+          }
+        },
+        "d6": {
+          "type": "detail",
+          "settings": {
+            "label": "Capacity",
+            "value": "Limited to twelve guests. The intimacy is deliberate, not a constraint."
+          }
+        }
+      },
+      "block_order": ["d1", "d2", "d3", "d4", "d5", "d6"],
+      "settings": {
+        "eyebrow": "Inaugural Gathering",
+        "heading": "Fieldside at Audi Field",
+        "meta": "Washington Spirit · NWSL · September 26th",
+        "image_asset": "spirit-loge-real.png",
+        "price_label": "Per Guest",
+        "price": "$375",
+        "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
+        "button_label": "Reserve Your Seats",
+        "button_url": "https://splash.aurisglobal.co/spirit",
+        "fine_print": "Limited availability · By reservation only"
+      }
+    },
+    "expect": {
+      "type": "auris-features",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "number": "01",
+            "heading": "Curated, Not Crowded",
+            "body": "Every Auris Society gathering is built for a small group. The intimacy is the point."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "number": "02",
+            "heading": "Hospitality with a Point of View",
+            "body": "Premium service, considered details, and a standard that does not blink — from arrival to final whistle."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "number": "03",
+            "heading": "Beyond the Match",
+            "body": "The game is the anchor, not the ceiling. Pre-match conversation, in-seat service, post-match access — the full evening, designed."
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": {
+        "background": "stone",
+        "eyebrow": "What to Expect"
+      }
+    }
+  },
+  "order": ["hero", "why", "experience", "expect"]
+}

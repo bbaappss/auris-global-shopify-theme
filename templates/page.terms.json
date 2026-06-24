@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "header": {
+      "type": "auris-page-header",
+      "settings": {
+        "background": "ivory",
+        "eyebrow": "Auris",
+        "heading": "Terms.",
+        "tagline": "Effective MMXXVI"
+      }
+    },
+    "body": {
+      "type": "auris-prose",
+      "settings": {
+        "background": "ivory",
+        "use_page_content": false,
+        "content": "<p>These terms govern your use of aurisglobal.co and any reservation made through Auris Society. By using the site or reserving a seat, you agree to the following.</p><h2>Reservations</h2><p>Auris Society seats are limited and confirmed only upon payment. Reservations are non-transferable without our written consent. Refunds are available up to 30 days before the gathering; within that window, credits may be issued at our discretion.</p><h2>Conduct</h2><p>Guests are expected to observe the standards of the venue and of Auris Society. We reserve the right to decline service or end attendance at any time.</p><h2>Intellectual property</h2><p>All marks, copy, and design on this site are the property of Auris Global, LLC.</p><h2>Contact</h2><p>Questions: <a href=\"mailto:hello@aurisglobal.co\">hello@aurisglobal.co</a>.</p>"
+      }
+    }
+  },
+  "order": ["header", "body"]
+}

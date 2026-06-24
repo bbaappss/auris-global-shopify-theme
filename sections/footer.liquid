@@ -1,56 +1,60 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
+<footer class="auris-footer full-width">
+  <div class="auris-container auris-footer__inner">
+    <div>
+      <div class="auris-footer__brand-name">
+        {{ section.settings.brand_name | default: shop.name }}
+      </div>
+      {% if section.settings.brand_text != blank %}
+        <p class="auris-footer__brand-text">{{ section.settings.brand_text }}</p>
+      {% endif %}
+    </div>
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
+    <nav class="auris-footer__nav">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
       {% endfor %}
-    {% endif %}
+    </nav>
+
+    <div class="auris-footer__legal">
+      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.legal_name | default: shop.name }}.
+      <br>
+      <span class="auris-caps">{{ section.settings.rights_text | default: 'All rights reserved' }}</span>
+    </div>
   </div>
 </footer>
-
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.footer",
   "settings": [
     {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Auris"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Brand description",
+      "default": "A premium sports holding company. Hospitality, investment, access."
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
     },
     {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
+      "type": "text",
+      "id": "legal_name",
+      "label": "Legal entity name",
+      "default": "Auris Global, LLC"
+    },
+    {
+      "type": "text",
+      "id": "rights_text",
+      "label": "Rights line",
+      "default": "All rights reserved"
     }
   ]
 }

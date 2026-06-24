@@ -1,0 +1,71 @@
+<section class="auris-email full-width">
+  <div class="auris-email__inner">
+    {% if section.settings.heading != blank %}
+      <p class="auris-email__title">{{ section.settings.heading }}</p>
+    {% endif %}
+    {% if section.settings.body != blank %}
+      <p class="auris-email__body">{{ section.settings.body }}</p>
+    {% endif %}
+
+    {% form 'customer', class: 'auris-email__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="hidden" name="contact[context]" value="newsletter_signup">
+      <input
+        type="email"
+        name="contact[email]"
+        class="auris-email__input"
+        placeholder="{{ section.settings.placeholder | default: 'Your email' }}"
+        required
+      >
+      <button type="submit" class="auris-btn">
+        {{ section.settings.button_label | default: 'Join the List' }}
+      </button>
+      {% if form.posted_successfully? %}
+        <p class="auris-email__success">{{ section.settings.success_message | default: 'Thank you — you are on the list.' }}</p>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email capture",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "This is the first of many."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Auris Society is building a calendar of premium gatherings across sport, culture, and the spaces between. More to come."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Join the List"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you — you are on the list."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email capture"
+    }
+  ]
+}
+{% endschema %}

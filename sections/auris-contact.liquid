@@ -1,0 +1,62 @@
+<section class="auris-section full-width auris-bg-navy">
+  <div class="auris-container">
+    <div class="auris-contact__card">
+      {% if section.settings.eyebrow != blank %}
+        <div class="auris-eyebrow">{{ section.settings.eyebrow }}</div>
+      {% endif %}
+
+      <h2 class="auris-contact__title">{{ section.settings.heading }}</h2>
+
+      {% if section.settings.caption != blank %}
+        <div class="auris-rule">
+          <span class="auris-hairline" style="width: 2.5rem;"></span>
+          <span class="auris-eyebrow">{{ section.settings.caption }}</span>
+          <span class="auris-hairline" style="width: 2.5rem;"></span>
+        </div>
+      {% endif %}
+
+      {% if section.settings.email != blank %}
+        <a href="mailto:{{ section.settings.email }}" class="auris-contact__email">
+          {{ section.settings.email }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Direct Line"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "For partnership, press, and private inquiry."
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Write to Us"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address",
+      "default": "hello@aurisglobal.co"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris contact"
+    }
+  ]
+}
+{% endschema %}

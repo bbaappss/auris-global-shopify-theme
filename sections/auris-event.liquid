@@ -1,0 +1,168 @@
+<section class="auris-section full-width auris-bg-navy">
+  <div class="auris-container">
+    {% if section.settings.eyebrow != blank %}
+      <div class="auris-eyebrow" style="color: var(--absinthe);">{{ section.settings.eyebrow }}</div>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="auris-event__title">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.meta != blank %}
+      <p class="auris-event__meta">{{ section.settings.meta }}</p>
+    {% endif %}
+
+    {% if section.settings.image %}
+      <div class="auris-event__media">
+        {{
+          section.settings.image
+          | image_url: width: 1600
+          | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 1200px, 100vw', widths: '600, 1000, 1600'
+        }}
+      </div>
+    {% elsif section.settings.image_asset != blank %}
+      <div class="auris-event__media">
+        <img src="{{ section.settings.image_asset | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1365" height="768" loading="lazy">
+      </div>
+    {% endif %}
+
+    <div class="auris-event__grid">
+      <dl class="auris-event__details">
+        {% for block in section.blocks %}
+          {% if block.type == 'detail' %}
+            <div class="auris-event__row" {{ block.shopify_attributes }}>
+              <dt>{{ block.settings.label }}</dt>
+              <dd>{{ block.settings.value }}</dd>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </dl>
+
+      <aside class="auris-event__aside">
+        {% if section.settings.price_label != blank %}
+          <div class="auris-event__price-label">{{ section.settings.price_label }}</div>
+        {% endif %}
+        {% if section.settings.price != blank %}
+          <div class="auris-event__price">{{ section.settings.price }}</div>
+        {% endif %}
+        {% if section.settings.price_note != blank %}
+          <p class="auris-event__note">{{ section.settings.price_note }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn auris-btn--block">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+        {% if section.settings.fine_print != blank %}
+          <p class="auris-event__fine">{{ section.settings.fine_print }}</p>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris event",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Inaugural Gathering"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fieldside at Audi Field"
+    },
+    {
+      "type": "text",
+      "id": "meta",
+      "label": "Sub-heading / meta",
+      "default": "Washington Spirit · NWSL · September 26th"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_asset",
+      "label": "Fallback image asset filename",
+      "info": "Used only when no Image is chosen. e.g. spirit-loge-real.png"
+    },
+    {
+      "type": "header",
+      "content": "Reservation panel"
+    },
+    {
+      "type": "text",
+      "id": "price_label",
+      "label": "Price label",
+      "default": "Per Guest"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$375"
+    },
+    {
+      "type": "textarea",
+      "id": "price_note",
+      "label": "Price note",
+      "default": "Inclusive of all hospitality, food & beverage, and premium fieldside access."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Reserve Your Seats"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "Limited availability · By reservation only"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Detail row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Setting"
+        },
+        {
+          "type": "textarea",
+          "id": "value",
+          "label": "Value",
+          "default": "Fieldside loge at Audi Field — field-level seating along the touchline, the vantage most venues hold back."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris event",
+      "blocks": [
+        { "type": "detail" },
+        { "type": "detail" },
+        { "type": "detail" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -13,10 +13,14 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "Auris",
+        "menu": "main-menu",
+        "cart_label": "Cart"
+      }
     }
   },
   "order": [
     "header"
-  ],
+  ]
 }

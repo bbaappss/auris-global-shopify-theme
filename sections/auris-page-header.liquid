@@ -1,0 +1,68 @@
+{%- liquid
+  assign bg = 'var(--navy)'
+  assign eyebrow_color = 'var(--aurum)'
+  assign title_color = 'var(--ivory)'
+  if section.settings.background == 'ivory'
+    assign bg = 'var(--ivory)'
+    assign title_color = 'var(--navy)'
+  endif
+-%}
+<section class="auris-page-header full-width" style="background-color: {{ bg }};">
+  <div class="auris-container">
+    {% if section.settings.eyebrow != blank %}
+      <div class="auris-eyebrow" style="color: {{ eyebrow_color }};">{{ section.settings.eyebrow }}</div>
+    {% endif %}
+
+    <h1 class="auris-page-header__title" style="color: {{ title_color }};">
+      {{ section.settings.heading | default: 'Heading' }}
+    </h1>
+
+    {% if section.settings.tagline != blank %}
+      <div class="auris-page-header__rule">
+        <span class="auris-hairline" style="width: 4rem;"></span>
+        <span>{{ section.settings.tagline }}</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris page header",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "navy", "label": "Navy" },
+        { "value": "ivory", "label": "Ivory" }
+      ],
+      "default": "navy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "About Auris"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "An institution founded on what others overlook."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Italic tagline",
+      "default": "Listening is the edge."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auris page header"
+    }
+  ]
+}
+{% endschema %}
