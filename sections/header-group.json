@@ -14,9 +14,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_text": "Auris",
-        "menu": "main-menu",
-        "cart_label": "Cart"
+        "menu": "main-menu"
       }
     }
   },

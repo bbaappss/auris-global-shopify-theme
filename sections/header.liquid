@@ -9,12 +9,6 @@
         <a href="{{ link.url }}" class="auris-header__link">{{ link.title }}</a>
       {% endfor %}
 
-      {% if shop.customer_accounts_enabled %}
-        <shopify-account menu="{{ section.settings.customer_account_menu }}">
-          <a href="{{ routes.account_url }}" class="auris-header__link">{{ section.settings.account_label | default: 'Account' }}</a>
-        </shopify-account>
-      {% endif %}
-
       <a href="{{ routes.cart_url }}" class="auris-header__link">
         <span>{{ section.settings.cart_label | default: 'Cart' }}</span>
         <span class="auris-header__cart-count">({{ cart.item_count }})</span>

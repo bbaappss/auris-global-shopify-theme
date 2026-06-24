@@ -24,11 +24,7 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "brand_name": "Auris",
-        "brand_text": "A premium sports holding company. Hospitality, investment, access.",
-        "menu": "",
-        "legal_name": "Auris Global, LLC",
-        "rights_text": "All rights reserved"
+        "menu": ""
       }
     }
   },
