@@ -106,7 +106,9 @@
         "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
         "button_label": "Register Interest",
         "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
-        "fine_print": "Limited availability · By reservation only"
+        "fine_print": "Limited availability · By reservation only",
+        "secondary_label": "Learn More",
+        "secondary_url": "/pages/society"
       }
     }
   },

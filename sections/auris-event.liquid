@@ -68,6 +68,11 @@
             {{ section.settings.button_label }}
           </a>
         {% endif %}
+        {% if section.settings.secondary_label != blank and section.settings.secondary_url != blank %}
+          <a href="{{ section.settings.secondary_url }}" class="auris-btn auris-btn--block auris-btn--outline">
+            {{ section.settings.secondary_label }}
+          </a>
+        {% endif %}
         {% if section.settings.fine_print != blank %}
           <p class="auris-event__fine">{{ section.settings.fine_print }}</p>
         {% endif %}
@@ -153,6 +158,17 @@
       "id": "fine_print",
       "label": "Fine print",
       "default": "Limited availability · By reservation only"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "info": "Optional. Shown as an outline button below the primary one."
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary button link"
     }
   ],
   "blocks": [

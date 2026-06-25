@@ -120,6 +120,13 @@ body {
 }
 .auris-btn:hover { opacity: 0.9; }
 .auris-btn--block { width: 100%; }
+.auris-btn--outline {
+  background: transparent;
+  border: 1px solid rgba(201, 169, 97, 0.5);
+  color: var(--ivory);
+  margin-top: 1rem;
+}
+.auris-btn--outline:hover { border-color: var(--aurum); opacity: 1; }
 
 /* ============================================================
    Header / Nav
