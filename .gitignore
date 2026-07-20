@@ -12,6 +12,10 @@ node_modules/
 # Shopify CLI files
 .shopify/
 
+# Secrets / API tokens
+.env
+.env.*
+
 ## Release files
 release
 *.zip

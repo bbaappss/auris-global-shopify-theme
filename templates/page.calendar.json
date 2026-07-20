@@ -22,9 +22,9 @@
       "type": "auris-calendar",
       "settings": {
         "products": [
-          "us-open",
           "nwsl-championship",
           "mubadala-open",
+          "us-open",
           "formula-1"
         ],
         "button_label": "Register Interest",
