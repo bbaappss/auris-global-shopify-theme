@@ -7,25 +7,90 @@
       <p class="auris-email__body">{{ section.settings.body }}</p>
     {% endif %}
 
-    {% form 'customer', class: 'auris-email__form' %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="hidden" name="contact[context]" value="newsletter_signup">
+    <form
+      class="auris-email__form"
+      id="auris-email-form-{{ section.id }}"
+      data-klaviyo-list="{{ section.settings.klaviyo_list_id }}"
+      novalidate
+    >
       <input
         type="email"
-        name="contact[email]"
+        name="email"
         class="auris-email__input"
         placeholder="{{ section.settings.placeholder | default: 'Your email' }}"
+        autocomplete="email"
         required
       >
       <button type="submit" class="auris-btn">
         {{ section.settings.button_label | default: 'Join the List' }}
       </button>
-      {% if form.posted_successfully? %}
-        <p class="auris-email__success">{{ section.settings.success_message | default: 'Thank you — you are on the list.' }}</p>
-      {% endif %}
-    {% endform %}
+      <p class="auris-email__success" hidden>{{ section.settings.success_message | default: 'Thank you — you are on the list.' }}</p>
+      <p class="auris-email__error" hidden>{{ section.settings.error_message | default: 'Something went wrong. Please try again.' }}</p>
+    </form>
   </div>
 </section>
+
+<script>
+  (function () {
+    var form = document.getElementById('auris-email-form-{{ section.id }}');
+    if (!form) return;
+
+    var input = form.querySelector('.auris-email__input');
+    var button = form.querySelector('button[type="submit"]');
+    var success = form.querySelector('.auris-email__success');
+    var error = form.querySelector('.auris-email__error');
+    var listId = form.getAttribute('data-klaviyo-list');
+    var buttonLabel = button.textContent.trim();
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (!input.value || !input.checkValidity()) {
+        input.reportValidity();
+        return;
+      }
+      if (!listId) {
+        error.hidden = false;
+        return;
+      }
+
+      success.hidden = true;
+      error.hidden = true;
+      button.disabled = true;
+      button.textContent = '…';
+
+      var body = new URLSearchParams();
+      body.append('g', listId);
+      body.append('email', input.value);
+      body.append('$fields', '');
+
+      fetch('https://manage.kmail-lists.com/ajax/subscriptions/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Cache-Control': 'no-cache'
+        },
+        body: body.toString()
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            input.value = '';
+            success.hidden = false;
+          } else {
+            error.hidden = false;
+          }
+        })
+        .catch(function () {
+          error.hidden = false;
+        })
+        .then(function () {
+          button.disabled = false;
+          button.textContent = buttonLabel;
+        });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -45,6 +110,13 @@
     },
     {
       "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "Klaviyo list ID",
+      "info": "The list ID new subscribers are added to (the 'g' value from your Klaviyo list URL).",
+      "default": "RWFift"
+    },
+    {
+      "type": "text",
       "id": "placeholder",
       "label": "Input placeholder",
       "default": "Your email"
@@ -60,6 +132,12 @@
       "id": "success_message",
       "label": "Success message",
       "default": "Thank you — you are on the list."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error message",
+      "default": "Something went wrong. Please try again."
     }
   ],
   "presets": [

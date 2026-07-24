@@ -729,6 +729,11 @@ body {
   color: var(--absinthe);
   font-size: 0.875rem;
 }
+.auris-email__error {
+  margin-top: 1rem;
+  color: rgba(250, 247, 242, 0.7);
+  font-size: 0.875rem;
+}
 
 /* ============================================================
    Footer
