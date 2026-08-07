@@ -872,6 +872,20 @@ body {
     align-items: center;
   }
 }
+/* Without this, an item with no image still reserves the thumb column and the
+   row sits indented from the page title and the rule above it. */
+.auris-cart__item--no-image {
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "info price"
+    "qty  price";
+}
+@media (min-width: 768px) {
+  .auris-cart__item--no-image {
+    grid-template-columns: 1fr 140px 140px;
+    grid-template-areas: "info qty price";
+  }
+}
 .auris-cart__thumb {
   grid-area: thumb;
   display: block;

@@ -6,7 +6,6 @@
 <section class="auris-cart full-width auris-bg-ivory">
   <div class="auris-container">
     <div class="auris-cart__head">
-      <div class="auris-eyebrow" style="color: var(--aurum);">Auris</div>
       <h1 class="auris-cart__title">{{ section.settings.heading | default: 'Cart' }}</h1>
     </div>
 
@@ -23,13 +22,13 @@
       <form action="{{ routes.cart_url }}" method="post" class="auris-cart__form">
         <ul class="auris-cart__items">
           {% for item in cart.items %}
-            <li class="auris-cart__item">
-              <a href="{{ item.url }}" class="auris-cart__thumb">
-                {% if item.image %}
+            <li class="auris-cart__item{% unless item.image %} auris-cart__item--no-image{% endunless %}">
+              {% if item.image %}
+                <a href="{{ item.url }}" class="auris-cart__thumb">
                   {%- assign item_alt = item.product.title | escape -%}
                   {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item_alt, widths: '120, 200, 300' }}
-                {% endif %}
-              </a>
+                </a>
+              {% endif %}
 
               <div class="auris-cart__info">
                 <a href="{{ item.url }}" class="auris-cart__name">{{ item.product.title }}</a>
@@ -45,7 +44,7 @@
 
               <div class="auris-cart__qty">
                 <label class="auris-cart__qty-label" for="updates_{{ item.key }}">
-                  {{ 'cart.update' | t }}
+                  Seats
                 </label>
                 <input
                   type="number"
