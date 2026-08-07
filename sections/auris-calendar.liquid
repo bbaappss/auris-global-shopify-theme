@@ -28,11 +28,8 @@
           </div>
 
           <div class="auris-calendar__action">
-            <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn" target="_blank" rel="noopener">
-              {{ section.settings.button_label | default: 'Reserve Seats' }}
-            </a>
-            <a href="{{ product.url }}" class="auris-btn auris-btn--ghost">
-              {{ section.settings.learn_more_label | default: 'Learn more' }}
+            <a href="{{ product.url }}" class="auris-btn">
+              {{ section.settings.button_label | default: 'CLAIM YOUR SEAT(S)' }}
             </a>
           </div>
         </li>
@@ -60,19 +57,8 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Reserve Seats"
-    },
-    {
-      "type": "url",
-      "id": "button_url",
-      "label": "Register interest link"
-    },
-    {
-      "type": "text",
-      "id": "learn_more_label",
-      "label": "Secondary button label",
-      "info": "Links to each event's own page.",
-      "default": "Learn more"
+      "info": "Each row's button links to that event's own page.",
+      "default": "CLAIM YOUR SEAT(S)"
     },
     {
       "type": "textarea",
