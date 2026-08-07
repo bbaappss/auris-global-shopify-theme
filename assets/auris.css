@@ -127,6 +127,14 @@ body {
   margin-top: 1rem;
 }
 .auris-btn--outline:hover { border-color: var(--aurum); opacity: 1; }
+/* Outline button for light backgrounds — .auris-btn--outline is ivory on
+   transparent and vanishes against ivory. */
+.auris-btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(14, 42, 64, 0.35);
+  color: var(--navy);
+}
+.auris-btn--ghost:hover { border-color: var(--navy); opacity: 1; }
 
 /* ============================================================
    Header / Nav
@@ -674,6 +682,9 @@ body {
 @media (min-width: 768px) {
   .auris-calendar__action { align-items: flex-end; }
 }
+/* Both buttons match the width of the wider one rather than sizing to their
+   own labels, so the stacked pair reads as one block. */
+.auris-calendar__action .auris-btn { width: 100%; }
 .auris-calendar__price {
   font-family: var(--auris-font-serif);
   color: var(--navy);

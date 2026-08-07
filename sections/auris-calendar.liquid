@@ -31,6 +31,9 @@
             <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn" target="_blank" rel="noopener">
               {{ section.settings.button_label | default: 'Register Interest' }}
             </a>
+            <a href="{{ product.url }}" class="auris-btn auris-btn--ghost">
+              {{ section.settings.learn_more_label | default: 'Learn more' }}
+            </a>
           </div>
         </li>
       {%- endfor -%}
@@ -63,6 +66,13 @@
       "type": "url",
       "id": "button_url",
       "label": "Register interest link"
+    },
+    {
+      "type": "text",
+      "id": "learn_more_label",
+      "label": "Secondary button label",
+      "info": "Links to each event's own page.",
+      "default": "Learn more"
     },
     {
       "type": "textarea",

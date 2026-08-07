@@ -1,0 +1,188 @@
+{% comment %}
+  Auris event PDP — mirrors the auris-event section used on the home and
+  Society pages, but sources everything from the product and its auris.*
+  metafields instead of hand-authored section settings.
+
+  Detail rows render only when their metafield is set, so events carrying
+  just year/status/city/event_date still lay out correctly.
+{% endcomment %}
+
+{%- liquid
+  assign m = product.metafields.auris
+  assign venue = m.venue.value
+  assign matchup = m.matchup.value
+  assign city = m.city.value
+  assign arrival = m.time.value
+  assign kickoff = m.kickoff_time.value
+  assign capacity = m.capacity.value
+  assign status = m.status.value
+  assign year = m.year.value
+
+  if m.event_date.value != blank
+    assign date_line = m.event_date.value | date: '%B %-d, %Y'
+  elsif status != blank and year != blank
+    assign date_line = status | append: ' ' | append: year
+  else
+    assign date_line = status
+  endif
+
+  assign meta_parts = ''
+  if date_line != blank
+    assign meta_parts = date_line
+  endif
+  if city != blank
+    if meta_parts != blank
+      assign meta_parts = meta_parts | append: ' · ' | append: city
+    else
+      assign meta_parts = city
+    endif
+  endif
+-%}
+
+<section class="auris-section full-width auris-bg-navy">
+  <div class="auris-container">
+    {% if section.settings.eyebrow != blank %}
+      <div class="auris-eyebrow" style="color: var(--absinthe);">{{ section.settings.eyebrow }}</div>
+    {% endif %}
+
+    <h1 class="auris-event__title">{{ product.title }}</h1>
+
+    {% if meta_parts != blank %}
+      <p class="auris-event__meta">{{ meta_parts }}</p>
+    {% endif %}
+
+    {% if product.featured_image %}
+      <div class="auris-event__media">
+        {{
+          product.featured_image
+          | image_url: width: 1600
+          | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 1200px, 100vw', widths: '600, 1000, 1600'
+        }}
+      </div>
+    {% elsif section.settings.image_asset != blank %}
+      <div class="auris-event__media">
+        <img src="{{ section.settings.image_asset | asset_url }}" alt="{{ product.title | escape }}" width="1365" height="768" loading="lazy">
+      </div>
+    {% endif %}
+
+    <div class="auris-event__grid">
+      <dl class="auris-event__details">
+        {% if product.description != blank %}
+          <div class="auris-event__row">
+            <dt>The Gathering</dt>
+            <dd>{{ product.description }}</dd>
+          </div>
+        {% endif %}
+        {% if matchup != blank %}
+          <div class="auris-event__row"><dt>Match</dt><dd>{{ matchup }}</dd></div>
+        {% endif %}
+        {% if venue != blank %}
+          <div class="auris-event__row"><dt>Setting</dt><dd>{{ venue }}</dd></div>
+        {% endif %}
+        {% if arrival != blank %}
+          <div class="auris-event__row"><dt>Arrival</dt><dd>{{ arrival }}</dd></div>
+        {% endif %}
+        {% if kickoff != blank %}
+          <div class="auris-event__row"><dt>Kick Off</dt><dd>{{ kickoff }}</dd></div>
+        {% endif %}
+        {% if capacity != blank %}
+          <div class="auris-event__row"><dt>Capacity</dt><dd>Limited to {{ capacity }} guests.</dd></div>
+        {% endif %}
+      </dl>
+
+      <aside class="auris-event__aside">
+        {% if section.settings.price_label != blank %}
+          <div class="auris-event__price-label">{{ section.settings.price_label }}</div>
+        {% endif %}
+        {% if product.price > 0 %}
+          <div class="auris-event__price">{{ product.price | money }}</div>
+        {% endif %}
+        {% if section.settings.price_note != blank %}
+          <p class="auris-event__note">{{ section.settings.price_note }}</p>
+        {% endif %}
+
+        {%- assign event_variant = product.selected_or_first_available_variant -%}
+        {% if product.available and event_variant %}
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ event_variant.id }}">
+            <button type="submit" class="auris-btn auris-btn--block">
+              {{ section.settings.button_label | default: 'Reserve Your Seats' }}
+            </button>
+          {% endform %}
+        {% else %}
+          <span class="auris-event__price auris-event__price--soldout">Sold out</span>
+        {% endif %}
+
+        {% if section.settings.secondary_label != blank and section.settings.secondary_url != blank %}
+          <a href="{{ section.settings.secondary_url }}" class="auris-btn auris-btn--block auris-btn--outline">
+            {{ section.settings.secondary_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.fine_print != blank %}
+          <p class="auris-event__fine">{{ section.settings.fine_print }}</p>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Auris event product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Auris Gathering"
+    },
+    {
+      "type": "text",
+      "id": "image_asset",
+      "label": "Fallback image asset filename",
+      "info": "Used when the product has no image of its own. e.g. spirit-loge-real.png",
+      "default": "spirit-loge-real.png"
+    },
+    {
+      "type": "header",
+      "content": "Reservation panel"
+    },
+    {
+      "type": "text",
+      "id": "price_label",
+      "label": "Price label",
+      "default": "Per Guest"
+    },
+    {
+      "type": "textarea",
+      "id": "price_note",
+      "label": "Price note",
+      "default": "Inclusive of all hospitality, food & beverage, and premium access."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Reserve Your Seats"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "Limited availability · By reservation only"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "View the Calendar"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary button link"
+    }
+  ]
+}
+{% endschema %}

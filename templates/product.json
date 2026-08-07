@@ -10,8 +10,10 @@
 {
   "sections": {
     "main": {
-      "type": "product",
-      "settings": {}
+      "type": "auris-event-product",
+      "settings": {
+        "secondary_url": "/pages/calendar"
+      }
     }
   },
   "order": [
