@@ -12,8 +12,8 @@
   assign venue = m.venue.value
   assign matchup = m.matchup.value
   assign city = m.city.value
-  assign arrival = m.time.value
-  assign kickoff = m.kickoff_time.value
+  assign gathering_start = m.gathering_start_time.value
+  assign event_start = m.event_start_time.value
   assign capacity = m.capacity.value
   assign status = m.status.value
   assign year = m.year.value
@@ -79,11 +79,11 @@
         {% if venue != blank %}
           <div class="auris-event__row"><dt>Setting</dt><dd>{{ venue }}</dd></div>
         {% endif %}
-        {% if arrival != blank %}
-          <div class="auris-event__row"><dt>Arrival</dt><dd>{{ arrival }}</dd></div>
+        {% if gathering_start != blank %}
+          <div class="auris-event__row"><dt>Gathering Start</dt><dd>{{ gathering_start }}</dd></div>
         {% endif %}
-        {% if kickoff != blank %}
-          <div class="auris-event__row"><dt>Kick Off</dt><dd>{{ kickoff }}</dd></div>
+        {% if event_start != blank %}
+          <div class="auris-event__row"><dt>Event Start</dt><dd>{{ event_start }}</dd></div>
         {% endif %}
         {% if capacity != blank %}
           <div class="auris-event__row"><dt>Capacity</dt><dd>Limited to {{ capacity }} guests.</dd></div>
