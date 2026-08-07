@@ -29,7 +29,7 @@
 
           <div class="auris-calendar__action">
             <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn" target="_blank" rel="noopener">
-              {{ section.settings.button_label | default: 'Register Interest' }}
+              {{ section.settings.button_label | default: 'Reserve Seats' }}
             </a>
             <a href="{{ product.url }}" class="auris-btn auris-btn--ghost">
               {{ section.settings.learn_more_label | default: 'Learn more' }}
@@ -60,7 +60,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Register Interest"
+      "default": "Reserve Seats"
     },
     {
       "type": "url",
