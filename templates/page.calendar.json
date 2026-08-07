@@ -22,11 +22,11 @@
       "type": "auris-calendar",
       "settings": {
         "products": [
-          "fieldside-at-audi-field",
-          "nwsl-championship",
-          "mubadala-open",
-          "us-open",
-          "formula-1"
+          "fieldside-at-audi-field-2026",
+          "nwsl-championship-2026",
+          "mubadala-open-2027",
+          "us-open-2027",
+          "formula-1-2027"
         ],
         "button_label": "Register Interest",
         "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
