@@ -927,6 +927,10 @@ body {
 }
 .auris-cart__remove:hover { border-color: var(--oxblood); }
 
+.auris-cart__item.is-updating {
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
 .auris-cart__qty {
   grid-area: qty;
 }

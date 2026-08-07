@@ -54,6 +54,8 @@
                   min="0"
                   inputmode="numeric"
                   class="auris-cart__qty-input"
+                  data-auris-qty
+                  data-key="{{ item.key }}"
                 >
               </div>
 
@@ -79,6 +81,57 @@
     {% endif %}
   </div>
 </section>
+
+<script>
+  (function () {
+    // Bound once on document so it survives the section being re-rendered
+    // below — a listener attached inside the section would be wiped by the
+    // first update, and scripts re-inserted via innerHTML never re-execute.
+    if (window.aurisCartBound) return;
+    window.aurisCartBound = true;
+
+    var SECTION_ID = {{ section.id | json }};
+    var CHANGE_URL = {{ routes.cart_change_url | json }};
+
+    document.addEventListener('change', function (event) {
+      var input = event.target.closest('[data-auris-qty]');
+      if (!input) return;
+
+      var quantity = parseInt(input.value, 10);
+      if (isNaN(quantity) || quantity < 0) return;
+
+      var row = input.closest('.auris-cart__item');
+      if (row) row.classList.add('is-updating');
+
+      fetch(CHANGE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ id: input.dataset.key, quantity: quantity, sections: SECTION_ID })
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (cart) {
+          // Shopify re-renders the section server-side, so line totals and the
+          // subtotal keep Liquid's money formatting rather than a JS guess.
+          var markup = cart.sections && cart.sections[SECTION_ID];
+          var wrapper = document.getElementById('shopify-section-' + SECTION_ID);
+          if (markup && wrapper) {
+            var parsed = new DOMParser().parseFromString(markup, 'text/html');
+            var fresh = parsed.getElementById('shopify-section-' + SECTION_ID) || parsed.body;
+            wrapper.innerHTML = fresh.innerHTML;
+          }
+          if (typeof cart.item_count === 'number') {
+            document.querySelectorAll('.auris-header__cart-count').forEach(function (el) {
+              el.textContent = '(' + cart.item_count + ')';
+            });
+          }
+        })
+        .catch(function () {
+          // Leave the row as-is; the Update button still works as a fallback.
+          if (row) row.classList.remove('is-updating');
+        });
+    });
+  })();
+</script>
 
 {% schema %}
 {
