@@ -46,7 +46,11 @@
           }
         }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "background": "stone"
       }
@@ -97,7 +101,14 @@
           }
         }
       },
-      "block_order": ["d1", "d2", "d3", "d4", "d5", "d6"],
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6"
+      ],
       "settings": {
         "eyebrow": "Inaugural Gathering",
         "heading": "Fieldside at Audi Field",
@@ -140,12 +151,21 @@
           }
         }
       },
-      "block_order": ["f1", "f2", "f3"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
       "settings": {
         "background": "stone",
         "eyebrow": "What to Expect"
       }
     }
   },
-  "order": ["hero", "why", "experience", "expect"]
+  "order": [
+    "hero",
+    "why",
+    "experience",
+    "expect"
+  ]
 }
