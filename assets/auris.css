@@ -165,7 +165,11 @@ body {
 .auris-header__nav {
   display: none;
   align-items: center;
-  gap: 2.5rem;
+  /* Gap + link padding below sum to the original 2.5rem of visual spacing;
+     the negative margin cancels the last link's padding so the nav still
+     aligns optically with the container edge. */
+  gap: 1.5rem;
+  margin-right: -0.5rem;
 }
 @media (min-width: 768px) {
   .auris-header__nav { display: flex; }
@@ -183,6 +187,12 @@ body {
   gap: 0.5rem;
 }
 .auris-header__link:hover { color: var(--aurum); }
+/* Desktop nav links carry no padding of their own, leaving a ~14px-tall
+   click target. Pad them out to a 44px target without changing the layout. */
+.auris-header__nav .auris-header__link {
+  min-height: 2.75rem;
+  padding-inline: 0.5rem;
+}
 .auris-header__link sup,
 .auris-header__cart-count { color: var(--aurum); }
 
