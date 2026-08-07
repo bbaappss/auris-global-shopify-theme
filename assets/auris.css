@@ -620,6 +620,14 @@ body {
   font-size: 0.72rem;
   color: var(--oxblood);
 }
+.auris-calendar__time {
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: rgba(44, 44, 44, 0.6);
+}
 .auris-calendar__name {
   font-family: var(--auris-font-serif);
   color: var(--navy);

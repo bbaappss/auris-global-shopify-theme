@@ -9,12 +9,14 @@
           endif
           assign status = product.metafields.auris.status.value
           assign city = product.metafields.auris.city.value
+          assign time = product.metafields.auris.time.value
         -%}
 
         <li class="auris-calendar__item">
           <div>
             {% if year != blank %}<div class="auris-calendar__year">{{ year }}</div>{% endif %}
             {% if status != blank %}<div class="auris-calendar__status">{{ status }}</div>{% endif %}
+            {% if time != blank %}<div class="auris-calendar__time">{{ time }}</div>{% endif %}
           </div>
 
           <div>
