@@ -516,6 +516,10 @@ body {
 .auris-event__aside .auris-btn { margin-top: 2.5rem; }
 .auris-event__aside form { margin: 2.5rem 0 0; }
 .auris-event__aside form .auris-btn { margin-top: 0; }
+/* The 2.5rem above separates the primary button from the price note. The
+   secondary button sits directly under the primary, so it keeps the 1rem
+   that .auris-btn--outline asks for. */
+.auris-event__aside .auris-btn--outline { margin-top: 1rem; }
 .auris-event__price--soldout {
   color: var(--oxblood);
   font-style: italic;
