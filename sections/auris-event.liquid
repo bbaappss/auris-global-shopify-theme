@@ -1,4 +1,4 @@
-<section class="auris-section full-width auris-bg-navy">
+<section class="auris-section full-width auris-bg-navy"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handleize }}"{% endif %}>
   <div class="auris-container">
     {% if section.settings.eyebrow != blank %}
       <div class="auris-eyebrow" style="color: var(--absinthe);">{{ section.settings.eyebrow }}</div>
@@ -85,6 +85,12 @@
 {
   "name": "Auris event",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor ID",
+      "info": "Optional. Lets other pages link straight to this section, e.g. /pages/society#experience"
+    },
     {
       "type": "text",
       "id": "eyebrow",

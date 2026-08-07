@@ -318,6 +318,12 @@ body {
   padding-top: 7rem;
   padding-bottom: 7rem;
 }
+/* The header is fixed, so an anchored section would otherwise scroll to sit
+   underneath it. Offset by the header's height. */
+.auris-section[id] { scroll-margin-top: 4rem; }
+@media (min-width: 768px) {
+  .auris-section[id] { scroll-margin-top: 5rem; }
+}
 @media (min-width: 768px) {
   .auris-section {
     padding-top: 10rem;
