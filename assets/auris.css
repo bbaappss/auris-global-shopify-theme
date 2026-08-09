@@ -135,6 +135,14 @@ body {
   color: var(--navy);
 }
 .auris-btn--ghost:hover { border-color: var(--navy); opacity: 1; }
+/* Accent fill for Learn more. Navy text, not ivory — ivory on absinthe is
+   unreadable, navy clears AA comfortably. Reads on navy and ivory alike. */
+.auris-btn--accent {
+  background-color: var(--absinthe);
+  border: none;
+  color: var(--navy);
+}
+.auris-btn--accent:hover { opacity: 0.85; }
 
 /* ============================================================
    Header / Nav
@@ -533,7 +541,8 @@ body {
 /* The 2.5rem above separates the primary button from the price note. The
    secondary button sits directly under the primary, so it keeps the 1rem
    that .auris-btn--outline asks for. */
-.auris-event__aside .auris-btn--outline { margin-top: 1rem; }
+.auris-event__aside .auris-btn--outline,
+.auris-event__aside .auris-btn--accent { margin-top: 1rem; }
 .auris-event__price--soldout {
   color: var(--oxblood);
   font-style: italic;

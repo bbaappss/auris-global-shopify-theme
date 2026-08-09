@@ -69,8 +69,13 @@
           </a>
         {% endif %}
         {% if section.settings.secondary_label != blank and section.settings.secondary_url != blank %}
-          <a href="{{ section.settings.secondary_url }}" class="auris-btn auris-btn--block auris-btn--outline">
+          <a href="{{ section.settings.secondary_url }}" class="auris-btn auris-btn--block auris-btn--accent">
             {{ section.settings.secondary_label }}
+          </a>
+        {% endif %}
+        {% if section.settings.tertiary_label != blank and section.settings.tertiary_url != blank %}
+          <a href="{{ section.settings.tertiary_url }}" class="auris-btn auris-btn--block auris-btn--outline" target="_blank" rel="noopener">
+            {{ section.settings.tertiary_label }}
           </a>
         {% endif %}
         {% if section.settings.fine_print != blank %}
@@ -169,12 +174,23 @@
       "type": "text",
       "id": "secondary_label",
       "label": "Secondary button label",
-      "info": "Optional. Shown as an outline button below the primary one."
+      "info": "Optional. Shown in the accent colour below the primary one — used for Learn more."
     },
     {
       "type": "url",
       "id": "secondary_url",
       "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "tertiary_label",
+      "label": "Third button label",
+      "info": "Optional. Shown as an outline button, opens in a new tab — used for Register Interest."
+    },
+    {
+      "type": "url",
+      "id": "tertiary_url",
+      "label": "Third button link"
     }
   ],
   "blocks": [

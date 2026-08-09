@@ -28,7 +28,9 @@
           "us-open-2027",
           "formula-1-2027"
         ],
-        "button_label": "CLAIM YOUR SEAT(S)",
+        "button_label": "Register Interest",
+        "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
+        "learn_more_label": "Learn more",
         "footnote": "Dates and venues confirmed closer to each gathering. Society members are notified first."
       }
     }
