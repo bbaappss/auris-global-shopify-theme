@@ -711,8 +711,11 @@ body {
   font-style: italic;
   font-size: 1.125rem;
 }
+/* The add-to-cart button is wrapped in a form; without a width the form sizes
+   to its content and that button ends up narrower than the links beside it. */
 .auris-calendar__action form {
   margin: 0;
+  width: 100%;
 }
 .auris-calendar__foot {
   margin-top: 5rem;

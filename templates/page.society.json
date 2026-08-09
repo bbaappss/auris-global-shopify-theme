@@ -119,9 +119,12 @@
         "price_label": "Per Guest",
         "price": "$375",
         "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
-        "button_label": "Reserve Your Seats",
-        "button_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
-        "fine_print": "Limited availability · By reservation only"
+        "button_label": "Reserve your seat",
+        "fine_print": "Limited availability · By reservation only",
+        "register_label": "Register Interest",
+        "register_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
+        "learn_label": "Learn More",
+        "learn_url": "/products/fieldside-at-audi-field-2026"
       }
     },
     "expect": {

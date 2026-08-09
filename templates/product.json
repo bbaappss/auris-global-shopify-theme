@@ -12,7 +12,8 @@
     "main": {
       "type": "auris-event-product",
       "settings": {
-        "secondary_url": "/pages/calendar"
+        "register_label": "Register Interest",
+        "register_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form"
       }
     }
   },

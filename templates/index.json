@@ -106,10 +106,10 @@
         "price_note": "Inclusive of all hospitality, food & beverage, and premium fieldside access.",
         "button_label": "Reserve your seat",
         "fine_print": "Limited availability · By reservation only",
-        "secondary_label": "Learn More",
-        "secondary_url": "/products/fieldside-at-audi-field-2026",
-        "tertiary_label": "Register Interest",
-        "tertiary_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form"
+        "register_label": "Register Interest",
+        "register_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
+        "learn_label": "Learn More",
+        "learn_url": "/products/fieldside-at-audi-field-2026"
       }
     }
   },

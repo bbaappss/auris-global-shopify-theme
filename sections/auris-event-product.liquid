@@ -113,9 +113,12 @@
           <span class="auris-event__price auris-event__price--soldout">Sold out</span>
         {% endif %}
 
-        {% if section.settings.secondary_label != blank and section.settings.secondary_url != blank %}
-          <a href="{{ section.settings.secondary_url }}" class="auris-btn auris-btn--block auris-btn--outline">
-            {{ section.settings.secondary_label }}
+        {% comment %}
+          No Learn more here — this page is what it would link to.
+        {% endcomment %}
+        {% if section.settings.register_label != blank and section.settings.register_url != blank %}
+          <a href="{{ section.settings.register_url }}" class="auris-btn auris-btn--block auris-btn--outline" target="_blank" rel="noopener">
+            {{ section.settings.register_label }}
           </a>
         {% endif %}
 
@@ -164,7 +167,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Reserve Your Seats"
+      "default": "Reserve your seat"
     },
     {
       "type": "text",
@@ -174,14 +177,15 @@
     },
     {
       "type": "text",
-      "id": "secondary_label",
-      "label": "Secondary button label",
-      "default": "View the Calendar"
+      "id": "register_label",
+      "label": "Register interest label",
+      "info": "Second button. Outline style, opens in a new tab.",
+      "default": "Register Interest"
     },
     {
       "type": "url",
-      "id": "secondary_url",
-      "label": "Secondary button link"
+      "id": "register_url",
+      "label": "Register interest link"
     }
   ]
 }

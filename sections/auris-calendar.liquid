@@ -28,9 +28,22 @@
           </div>
 
           <div class="auris-calendar__action">
-            <a href="{{ section.settings.button_url | default: '#' }}" class="auris-btn" target="_blank" rel="noopener">
-              {{ section.settings.button_label | default: 'Register Interest' }}
-            </a>
+            {%- assign row_variant = product.selected_or_first_available_variant -%}
+            {% if product.available and row_variant %}
+              {% form 'product', product %}
+                <input type="hidden" name="id" value="{{ row_variant.id }}">
+                <button type="submit" class="auris-btn">
+                  {{ section.settings.cart_label | default: 'Reserve your seat' }}
+                </button>
+              {% endform %}
+            {% else %}
+              <span class="auris-calendar__price auris-calendar__price--soldout">Sold out</span>
+            {% endif %}
+            {% if section.settings.button_url != blank %}
+              <a href="{{ section.settings.button_url }}" class="auris-btn auris-btn--ghost" target="_blank" rel="noopener">
+                {{ section.settings.button_label | default: 'Register Interest' }}
+              </a>
+            {% endif %}
             <a href="{{ product.url }}" class="auris-btn auris-btn--accent">
               {{ section.settings.learn_more_label | default: 'Learn more' }}
             </a>
@@ -58,8 +71,15 @@
     },
     {
       "type": "text",
+      "id": "cart_label",
+      "label": "Reserve button label",
+      "info": "First button. Adds that row's event to the cart.",
+      "default": "Reserve your seat"
+    },
+    {
+      "type": "text",
       "id": "button_label",
-      "label": "Button label",
+      "label": "Register interest label",
       "default": "Register Interest"
     },
     {
