@@ -120,13 +120,14 @@ body {
 }
 .auris-btn:hover { opacity: 0.9; }
 .auris-btn--block { width: 100%; }
+/* Both bordered variants keep their resting border colour on hover — the base
+   .auris-btn opacity fade is the only hover cue. */
 .auris-btn--outline {
   background: transparent;
   border: 1px solid rgba(201, 169, 97, 0.5);
   color: var(--ivory);
   margin-top: 1rem;
 }
-.auris-btn--outline:hover { border-color: var(--aurum); opacity: 1; }
 /* Outline button for light backgrounds — .auris-btn--outline is ivory on
    transparent and vanishes against ivory. */
 .auris-btn--ghost {
@@ -134,7 +135,6 @@ body {
   border: 1px solid rgba(14, 42, 64, 0.35);
   color: var(--navy);
 }
-.auris-btn--ghost:hover { border-color: var(--navy); opacity: 1; }
 /* Accent fill for Learn more. Navy text, not ivory — ivory on absinthe is
    unreadable, navy clears AA comfortably. Reads on navy and ivory alike. */
 .auris-btn--accent {
