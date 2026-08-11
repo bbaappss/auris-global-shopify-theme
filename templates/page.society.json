@@ -122,9 +122,7 @@
         "button_label": "Reserve your seat",
         "fine_print": "Limited availability · By reservation only",
         "register_label": "Register Interest",
-        "register_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form",
-        "learn_label": "Learn More",
-        "learn_url": "/products/fieldside-at-audi-field-2026"
+        "register_url": "https://airtable.com/appRO1J0k7BzcmfI4/pagFdDQ5rziCqVk4M/form"
       }
     },
     "expect": {
