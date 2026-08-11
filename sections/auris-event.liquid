@@ -1,3 +1,10 @@
+{%- comment -%}
+  Anything the linked product already owns is read from it rather than
+  restated in section settings — price and imagery today. Settings act as
+  overrides, so a panel can still diverge deliberately where it needs to.
+{%- endcomment -%}
+{%- assign event_product = section.settings.product -%}
+
 <section class="auris-section full-width auris-bg-navy"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handleize }}"{% endif %}>
   <div class="auris-container">
     {% if section.settings.eyebrow != blank %}
@@ -16,6 +23,14 @@
       <div class="auris-event__media">
         {{
           section.settings.image
+          | image_url: width: 1600
+          | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 1200px, 100vw', widths: '600, 1000, 1600'
+        }}
+      </div>
+    {% elsif event_product != blank and event_product.featured_image %}
+      <div class="auris-event__media">
+        {{
+          event_product.featured_image
           | image_url: width: 1600
           | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 1200px, 100vw', widths: '600, 1000, 1600'
         }}
@@ -42,7 +57,6 @@
         {% if section.settings.price_label != blank %}
           <div class="auris-event__price-label">{{ section.settings.price_label }}</div>
         {% endif %}
-        {%- assign event_product = section.settings.product -%}
         {% if event_product != blank and event_product.price > 0 %}
           <div class="auris-event__price">{{ event_product.price | money }}</div>
         {% elsif section.settings.price != blank %}
@@ -123,7 +137,7 @@
       "type": "text",
       "id": "image_asset",
       "label": "Fallback image asset filename",
-      "info": "Used only when no Image is chosen. e.g. spirit-loge-real.png"
+      "info": "Last resort only. Image is taken from the linked product unless the Image picker above overrides it."
     },
     {
       "type": "header",
