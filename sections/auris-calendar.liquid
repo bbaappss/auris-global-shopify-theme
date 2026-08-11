@@ -10,6 +10,8 @@
           assign status = product.metafields.auris.status.value
           assign city = product.metafields.auris.city.value
           assign time = product.metafields.auris.gathering_start_time.value
+          # Seats on sale yet? Off means the row offers Register Interest only.
+          assign bookable = product.metafields.auris.bookable.value
         -%}
 
         <li class="auris-calendar__item">
@@ -28,25 +30,35 @@
           </div>
 
           <div class="auris-calendar__action">
-            {%- assign row_variant = product.selected_or_first_available_variant -%}
-            {% if product.available and row_variant %}
-              {% form 'product', product %}
-                <input type="hidden" name="id" value="{{ row_variant.id }}">
-                <button type="submit" class="auris-btn">
-                  {{ section.settings.cart_label | default: 'Reserve your seat' }}
-                </button>
-              {% endform %}
-            {% else %}
-              <span class="auris-calendar__price auris-calendar__price--soldout">Sold out</span>
+            {% if bookable %}
+              {%- assign row_variant = product.selected_or_first_available_variant -%}
+              {% if product.available and row_variant %}
+                {% form 'product', product %}
+                  <input type="hidden" name="id" value="{{ row_variant.id }}">
+                  <button type="submit" class="auris-btn">
+                    {{ section.settings.cart_label | default: 'Reserve your seat' }}
+                  </button>
+                {% endform %}
+              {% else %}
+                <span class="auris-calendar__price auris-calendar__price--soldout">Sold out</span>
+              {% endif %}
             {% endif %}
+
             {% if section.settings.button_url != blank %}
-              <a href="{{ section.settings.button_url }}" class="auris-btn auris-btn--ghost" target="_blank" rel="noopener">
+              {%- comment -%}
+                Filled when it stands alone, outlined when Reserve leads — so
+                every row has exactly one button carrying primary weight.
+              {%- endcomment -%}
+              <a href="{{ section.settings.button_url }}" class="auris-btn{% if bookable %} auris-btn--ghost{% endif %}" target="_blank" rel="noopener">
                 {{ section.settings.button_label | default: 'Register Interest' }}
               </a>
             {% endif %}
-            <a href="{{ product.url }}" class="auris-btn auris-btn--accent">
-              {{ section.settings.learn_more_label | default: 'Learn more' }}
-            </a>
+
+            {% if bookable %}
+              <a href="{{ product.url }}" class="auris-btn auris-btn--accent">
+                {{ section.settings.learn_more_label | default: 'Learn more' }}
+              </a>
+            {% endif %}
           </div>
         </li>
       {%- endfor -%}
