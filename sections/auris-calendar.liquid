@@ -7,12 +7,10 @@
           # timezone, so anchor each to midday before formatting.
           assign event_start = product.metafields.auris.event_date
           assign event_end = product.metafields.auris.event_end_date
-          # The big year comes from the event date; fall back to the manual
-          # Year field only for undated events (e.g. "To be determined").
+          # The big year comes from the event date; undated events show no
+          # year heading, just the "To be determined" line below.
           if event_start.value != blank
             assign year = event_start | append: 'T12:00:00' | date: '%Y'
-          else
-            assign year = product.metafields.auris.year.value
           endif
           # The date line under the year runs from the event date to the end
           # date when one is set (e.g. AUG 30 – SEP 13); undated events read
