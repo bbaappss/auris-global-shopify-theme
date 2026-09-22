@@ -7,7 +7,14 @@
           if year == blank and product.metafields.auris.event_date.value != blank
             assign year = product.metafields.auris.event_date.value | date: '%Y'
           endif
-          assign status = product.metafields.auris.status.value
+          # The date line under the year comes from the real event date;
+          # fall back to the free-text status label only for undated events.
+          assign event_date = product.metafields.auris.event_date.value
+          if event_date != blank
+            assign date_label = event_date | date: '%b %-d'
+          else
+            assign date_label = product.metafields.auris.status.value
+          endif
           assign city = product.metafields.auris.city.value
           assign time = product.metafields.auris.gathering_start_time.value
           # Seats on sale yet? Off means the row offers Register Interest only.
@@ -17,7 +24,7 @@
         <li class="auris-calendar__item">
           <div>
             {% if year != blank %}<div class="auris-calendar__year">{{ year }}</div>{% endif %}
-            {% if status != blank %}<div class="auris-calendar__status">{{ status }}</div>{% endif %}
+            {% if date_label != blank %}<div class="auris-calendar__status">{{ date_label }}</div>{% endif %}
             {% if time != blank %}<div class="auris-calendar__time">{{ time }}</div>{% endif %}
           </div>
 
