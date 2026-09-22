@@ -22,6 +22,7 @@
       "type": "auris-calendar",
       "settings": {
         "products": [
+          "brandons-demo-event",
           "fieldside-at-audi-field-2026",
           "nwsl-championship-2026",
           "mubadala-open-2027",
