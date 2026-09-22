@@ -7,15 +7,20 @@
           if year == blank and product.metafields.auris.event_date.value != blank
             assign year = product.metafields.auris.event_date.value | date: '%Y'
           endif
-          # The date line under the year comes from the real event date;
-          # fall back to the free-text status label only for undated events.
-          # Date-only metafields shift a day when Liquid applies the shop
-          # timezone, so anchor the raw ISO string to midday before formatting.
-          assign event_date = product.metafields.auris.event_date
-          if event_date.value != blank
-            assign date_label = event_date | append: 'T12:00:00' | date: '%b %-d'
+          # The date line under the year runs from the event date to the end
+          # date when one is set (e.g. AUG 30 – SEP 13); undated events read
+          # "To be determined". Date-only metafields shift a day when Liquid
+          # applies the shop timezone, so anchor each to midday before formatting.
+          assign event_start = product.metafields.auris.event_date
+          assign event_end = product.metafields.auris.event_end_date
+          if event_start.value != blank
+            assign date_label = event_start | append: 'T12:00:00' | date: '%b %-d'
+            if event_end.value != blank
+              assign end_label = event_end | append: 'T12:00:00' | date: '%b %-d'
+              assign date_label = date_label | append: ' – ' | append: end_label
+            endif
           else
-            assign date_label = product.metafields.auris.status.value
+            assign date_label = 'To be determined'
           endif
           assign city = product.metafields.auris.city.value
           assign time = product.metafields.auris.gathering_start_time.value

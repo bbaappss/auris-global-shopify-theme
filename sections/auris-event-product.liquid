@@ -4,7 +4,8 @@
   metafields instead of hand-authored section settings.
 
   Detail rows render only when their metafield is set, so events carrying
-  just year/status/city/event_date still lay out correctly.
+  just city/event_date still lay out correctly. Undated events show
+  "To be determined"; a set end date renders the date line as a range.
 {% endcomment %}
 
 {%- liquid
@@ -15,17 +16,18 @@
   assign gathering_start = m.gathering_start_time.value
   assign event_start = m.event_start_time.value
   assign capacity = m.capacity.value
-  assign status = m.status.value
-  assign year = m.year.value
 
   if m.event_date.value != blank
-    # Anchor the date-only metafield to midday so the shop timezone can't
-    # roll it to the next day when formatting.
+    # Anchor date-only metafields to midday so the shop timezone can't roll
+    # them to the next day when formatting; span to the end date when set.
     assign date_line = m.event_date | append: 'T12:00:00' | date: '%B %-d, %Y'
-  elsif status != blank and year != blank
-    assign date_line = status | append: ' ' | append: year
+    if m.event_end_date.value != blank
+      assign date_start = m.event_date | append: 'T12:00:00' | date: '%B %-d'
+      assign date_end = m.event_end_date | append: 'T12:00:00' | date: '%B %-d, %Y'
+      assign date_line = date_start | append: ' – ' | append: date_end
+    endif
   else
-    assign date_line = status
+    assign date_line = 'To be determined'
   endif
 
   assign meta_parts = ''
