@@ -9,9 +9,11 @@
           endif
           # The date line under the year comes from the real event date;
           # fall back to the free-text status label only for undated events.
-          assign event_date = product.metafields.auris.event_date.value
-          if event_date != blank
-            assign date_label = event_date | date: '%b %-d'
+          # Date-only metafields shift a day when Liquid applies the shop
+          # timezone, so anchor the raw ISO string to midday before formatting.
+          assign event_date = product.metafields.auris.event_date
+          if event_date.value != blank
+            assign date_label = event_date | append: 'T12:00:00' | date: '%b %-d'
           else
             assign date_label = product.metafields.auris.status.value
           endif

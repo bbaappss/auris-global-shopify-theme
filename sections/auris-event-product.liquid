@@ -19,7 +19,9 @@
   assign year = m.year.value
 
   if m.event_date.value != blank
-    assign date_line = m.event_date.value | date: '%B %-d, %Y'
+    # Anchor the date-only metafield to midday so the shop timezone can't
+    # roll it to the next day when formatting.
+    assign date_line = m.event_date | append: 'T12:00:00' | date: '%B %-d, %Y'
   elsif status != blank and year != blank
     assign date_line = status | append: ' ' | append: year
   else
